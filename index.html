@@ -1,0 +1,74 @@
+// this html file for the DOM manipulation and event handling 
+// Chai aur code channel 3 video and not more text add this file will be the sparate file 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ladani prem</title>
+    
+    <style>
+        .bg-black {
+           background-color: black;
+           color: white;
+           
+        }
+    </style>
+</head>
+
+<body class = "bg-black">
+    <div>
+        <h1 id="title" class="heading">Ladani prem<span>test text</span></h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias fuga nostrum at necessitatibus nisi eum reiciendis odit tenetur? Repudiandae corporis, quasi aliquam illo sunt dolore minima! Odio temporibus aliquam esse!</p>
+        <h2>Lorem, ipsum dolor sit amet.</h2>
+        <h3> Lorem ipsum dolor, sit.</h3>
+        <input type="password" name="" id="" placeholder="">
+    <ul class="list">
+        <!-- <li>one</li>
+        <li>two</li>
+        <li>three</li>
+        <li>four</li> -->
+
+    </ul>
+    </div>
+</body>
+<script>
+    function addlist(list){
+        const li = document.createElement("li");
+          li.innerHTML = `${list}`;
+          document.querySelector('.list')
+          .appendChild(li);
+          
+    }
+    addlist("tomoto");
+    addlist("onion");
+
+
+    function addoptionlist(list){
+        const op = document.createElement("option");
+        op.innerHTML = `${list}`;
+    //   op.appendChild(document.createTextNode(list)); //same as below work
+      document.querySelector('.list')
+        .appendChild(op);
+    }
+   addoptionlist("apple");
+
+   // edit the text
+    const secondlist = document.querySelector("li:nth-child(2)");
+    // secondlist.innerHTML= "banana";
+  
+    const newscondist = document.createElement('li');
+    newscondist.innerHTML = "jackfruit";
+    secondlist.replaceWith(newscondist);
+
+    const firstlist = document.querySelector("li:first-child");
+     firstlist.outerHTML = '<li>Orange</li>'
+
+    // remove the text
+    const firstline = document.querySelector("li:first-child");
+    firstline.remove();
+
+    
+
+</script>
+</html>
