@@ -1,0 +1,198 @@
+
+# Introduction to Events
+#JavaScript Events - Notes from Chai aur Code Series
+
+# Introduction to Events
+Events are actions or occurrences that happen in the browser which JavaScript can detect and respond to.
+Examples include clicks, key presses, page loading, etc.
+
+# Event Handling Methods
+
+ 1. HTML Event Attributes (Not recommended)
+- Inline event handling using HTML attributes
+- Example: <button onclick="handleClick()">
+- Disadvantages:
+    - Mixes HTML and JavaScript
+    - Poor separation of concerns
+    - Hard to maintain
+    - Limited functionality
+
+  2. DOM Element Properties
+- Assigning event handlers directly to DOM elements
+- Example: element.onclick = function() {}
+- Only one handler per event type
+- Cannot add multiple listeners
+
+  3. addEventListener Method (Recommended)
+- Modern and flexible approach
+- Syntax: element.addEventListener(event, handler, options)
+- Benefits:
+    - Multiple listeners for same event
+    - Better control over event propagation
+    - Can be removed using removeEventListener
+    - Supports event capturing and bubbling
+
+# Event Propagation
+1. Capturing Phase (Top → Down)
+2. Target Phase
+3. Bubbling Phase (Bottom → Up)
+
+# Common Events Detailed
+1. Mouse Events:
+     - click: Fires when element is clicked
+     - dblclick: Fires on double click
+     - mousedown: Fires when mouse button is pressed
+     - mouseup: Fires when mouse button is released
+     - mouseover: Fires when cursor moves onto element
+     - mouseout: Fires when cursor leaves element
+     - mousemove: Fires when cursor moves within element
+
+2. Keyboard Events:
+     - keydown: Fires when key is pressed down
+     - keyup: Fires when key is released
+     - keypress: Fires when character key is pressed and released
+
+3. Form Events:
+     - submit: Fires when form is submitted
+     - change: Fires when input value changes
+     - focus: Fires when element receives focus
+     - blur: Fires when element loses focus
+     - input: Fires when input value changes instantly
+
+4. Document/Window Events:
+     - load: Fires when page/element finishes loading
+     - unload: Fires when page is unloaded/closed
+     - resize: Fires when window is resized
+     - scroll: Fires when document/element is scrolled
+     - DOMContentLoaded: Fires when HTML is loaded and parsed
+
+# Event Object
+- Automatically passed to event handlers
+- Contains information about the event
+- Important properties:
+    - target: Element that triggered the event
+    - type: Type of event
+    - preventDefault(): Stops default behavior
+    - stopPropagation(): Stops event bubbling
+
+code of video 
+
+// one html file
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    // document.getElementById('owl').onclick = function(){
+    //     alert("owl clicked")
+    // }
+
+     // attachEvent()
+    // jQuery - on
+
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+    // document.getElementById('images').addEventListener('click', function(e){
+    //     console.log("clicked inside the ul");
+    // }, false)
+
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log("owl clicked");
+    //     e.stopPropagation()
+    // }, false)
+    
+    // document.getElementById('google').addEventListener('click',function(e){
+    //     e.preventDefault();
+    //     e.stopPropagation()
+    //     console.log("google clicked");
+    // }, false)
+   
+    
+    document.querySelector('#images').addEventListener('click', function(e){
+        console.log(e.target.tagName);
+        if (e.target.tagName === 'IMG') {
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode
+            removeIt.remove()
+        }
+    
+        
+    })
+    
+    //removeIt.parentNode.removeChild(removeIt)
+</script>
+</html>
+
+
+// three html file 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur Javascript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const sayDate = function(str){
+        console.log(str, Date.now());
+    }
+
+    const intervalId = setInterval(sayDate, 1000, "hi")
+
+    clearInterval(intervalId)
+</script>
+</html>
+
+// two html file 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur code</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const sayHitesh = function(){
+        console.log("Hitesh");
+    }
+    const changeText = function(){
+        document.querySelector('h1').innerHTML = "best JS series"
+    }
+
+    const changeMe = setTimeout(changeText, 2000)
+
+    document.querySelector('#stop').addEventListener('click', function(){
+        clearTimeout(changeMe)
+        console.log("STOPPED")
+    })
+</script>
+</html>
